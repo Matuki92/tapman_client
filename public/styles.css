@@ -1,0 +1,273 @@
+
+/* ---- reset ---- */
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- typography ---- */
+
+@font-face {
+  font-family: goboldbold;
+  src: url('./assets/font/goboldbold.ttf');
+}
+
+body {
+  text-transform: uppercase;
+  background: #343334;
+  color: rgb(240, 240, 240);
+  font-family: goboldbold;
+  font-size: 35px;
+  line-height: 14,7%;
+}
+
+h1, h2, h3, p {
+  font-weight: normal;
+  margin: 0;
+  display: inline-block;
+}
+
+p {
+  margin: 0;
+}
+
+.result-item,
+button,
+form,
+form .inline-fields select,
+form .field input,
+form .done-button,
+form .clear-button {
+  font-size: 4.0vh;
+  font-family: inherit;
+}
+
+/* ---- layout ---- */
+
+button {
+  background: none;
+  border:none;
+  color: white;
+}
+
+button a {
+  text-decoration: none;
+  color: white;
+}
+
+#footer {
+  padding: 20px 0;
+  height: 60px;
+}
+
+#footer .footer-logo {
+  float: right;
+}
+/* beer screen */
+
+.site-logo {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.sticky.site-logo {
+  position: sticky;
+  top: 0;
+  background-color: #343334;
+}
+
+.mobile-beerscreen {
+  overflow: scroll;
+}
+
+/* beercard */
+
+.beercard {
+  border: 1px solid rgb(128, 128, 128, 0.3);
+  padding: 5px 10px;
+  text-shadow: 1px 1px #BBB;
+}
+
+.beer-name,
+.beer-price {
+  font-size: 5.0vh;
+}
+
+.beer-info {
+  font-size: 3.5vh;
+  line-height: 250%;
+}
+
+/* mobile layout */
+
+.beercard .mobile .beer-price {
+  float: right;
+}
+
+/* tv layout */
+
+.beercard .tv {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* ---- Admin CP ---- */
+
+.container,
+.beersearch-container {
+  width: 80%;
+  min-width: 350px;
+  margin: 0 auto;
+}
+
+.beersearch-container {
+  height: 80px;
+  overflow: visible;
+}
+
+.result-box,
+.search-bar {
+  width: 100%;
+}
+
+.admincp-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.admincp-header,
+.app-logo {
+  padding: 30px 0;
+  border-bottom: 1px solid grey;
+  margin-bottom: 30px;
+}
+
+.search-bar {
+  font-size: 4.5vh;
+}
+
+.search-bar {
+  display: block;
+  background: rgb(226, 226, 226);
+  border: none;
+  outline: none;
+  color: rgb(0, 0, 0);
+  border: 1px solid black;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.result-box {
+  position: relative;
+  max-height: 300px;
+  overflow: scroll;
+  overflow-x: hidden;
+  -webkit-box-shadow: 0px 25px 150px 35px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 25px 150px 35px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 25px 150px 35px rgba(0, 0, 0, 0.1);
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.beer-info-box,
+.button-box {
+  display: inline-block;
+}
+
+.edit-button,
+.delete-button {
+  width: 40%;
+  height: 100%;
+  color: white;
+  margin-right: 5px;
+  border-left: 1px solid white;
+}
+
+.edit-button:hover {
+  color: orange;
+}
+
+.delete-button:hover {
+  color: red;
+}
+
+/* ---- Beer form ---- */
+
+form .field {
+  margin-bottom: 10px;
+}
+
+form h1 {
+  margin-bottom: 20px;
+}
+
+form .field label {
+  display: block;
+}
+
+form .field input {
+  width: 90%;
+  border-radius: 5px;
+  background: none;
+  border: none;
+  margin-left: 10%;
+  border-bottom: 1px solid grey;
+  color: white;
+}
+
+form .field input:focus {
+  outline: none;
+  background: rgb(39, 39, 39);
+}
+
+form .inline-fields {
+  display: flex;
+  justify-content: space-between;
+}
+
+form .inline-fields .field {
+  width: 30%;
+}
+
+form .inline-fields input,
+form .inline-fields select {
+  width: 100%;
+  margin: 0;
+}
+
+form .required {
+  color: red;
+}
+
+form .done-button,
+form .clear-button {
+  font-size: 80%;
+  height: 100%;
+  width: 40%;
+  margin: 10px 5px;
+  border-left: 1px solid white;
+}
+
+/* ---- Login ---- */
+
+.login-button {
+  border: 1px solid grey;
+  width: 50%;
+  border-radius: 5px;
+}
