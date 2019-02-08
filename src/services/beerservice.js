@@ -1,7 +1,7 @@
 import { API_URL } from '../appdata/url';
 
 const hostname = window.location.hostname,
-  venueDNS = hostname === 'localhost' ? 'tapmantest' : hostname.substr(0, hostname.indexOf('.'));
+  venueDNS = hostname === 'localhost' ? 'dev' : hostname.substr(0, hostname.indexOf('.'));
 
 export const addBeer = async beer => {
   try {
