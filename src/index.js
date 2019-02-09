@@ -8,6 +8,10 @@ import AdminCP from './pages/admincp/admincp'
 import Login from './pages/login/login'
 // Services
 import { getVenueSettings } from './services/venueservice';
+// io
+// socket
+import socketIoClient from 'socket.io-client';
+import { SOCKET_URL } from './appdata/url'
 
 class App extends Component {
   constructor({ venue, isLogged }) {
@@ -16,8 +20,41 @@ class App extends Component {
     // also returns if the user is logged in or not
     this.state = {
       venue,
-      isLogged
+      isLogged,
     }
+    this.socket = null
+    this.socketSetup();
+  }
+
+  componentDidMount() {
+    console.log(this.state.isLogged ? 'you are logged in' : 'you are not logged in');
+  }
+
+  componentWillUnmount() {
+    this.socket.disconnect();
+  }
+  // SOCKET IO LISTENERS
+
+  socketSetup = () => {
+    this.socket = socketIoClient(SOCKET_URL);
+
+    this.socket.on('connected', () => {
+      console.log(`Socket connection successful with ID "${this.socket.id}"`);
+    });
+    this.socket.on('Update-Venue', () => {
+      console.log('Received update call from server');
+      getVenueSettings()
+        .then(({ venue, status }) => {
+          if (status === 200) {
+            this.setState({
+              venue
+            });
+          } else {
+            // do something
+          }
+        })
+        .catch(err => console.log(err));
+    });
   }
 
   handleLogin = () => {
@@ -29,7 +66,6 @@ class App extends Component {
 
   render() {
     const { venue, isLogged } = this.state;
-    console.log(isLogged ? 'you are logged in' : 'you are not logged in');
     document.title = venue.name;
 
     return (

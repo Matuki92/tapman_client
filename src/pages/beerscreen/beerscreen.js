@@ -3,12 +3,6 @@ import React, { Component } from 'react';
 // components
 import BeerCard from './components/beercard';
 import Footer from './components/footer';
-// socket
-import socketIoClient from 'socket.io-client';
-// data
-import { SOCKET_URL } from '../../appdata/url';
-// services
-import { getVenueSettings } from '../../services/venueservice';
 
 class BeerScreen extends Component {
 
@@ -32,49 +26,20 @@ class BeerScreen extends Component {
     this.getDevice();
   }
 
-  componentDidMount() {
-    this.socketSetup();
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      beers: nextProps.beers,
+      settings: nextProps.settings
+    });
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    const currentBeerList = this.state.beers;
-    const updatedBeerList = nextState.beers;
 
-    console.log(currentBeerList !== updatedBeerList ? 'content updated' : 'content NOT updated');
+    console.log(this.state !== nextState ? 'content updated' : 'content NOT updated');
 
-    return currentBeerList !== updatedBeerList;
-  }
-
-  componentWillUnmount() {
-    console.log('Closing socket connection');
-    this.socket.disconnect();
+    return this.state !== nextState;
   }
   /////////////////////
-  // SOCKET IO LISTENERS
-
-  socketSetup = () => {
-    const endpoint = SOCKET_URL;
-    this.socket = socketIoClient(endpoint);
-
-    this.socket.on('connected', () => {
-      console.log('Socket connection successful');
-    });
-    this.socket.on('Update-Venue', () => {
-      console.log('Received update call from server');
-      getVenueSettings()
-        .then(({ venue, status }) => {
-          if (status === 200) {
-            this.setState({
-              beers: venue.beers,
-              settings: venue.settings
-            });
-          } else {
-            // do something
-          }
-        })
-        .catch(err => console.log(err));
-    });
-  }
 
   // RENDER BEER CARDS
 
