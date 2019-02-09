@@ -46,6 +46,7 @@ class BeerScreen extends Component {
   }
 
   componentWillUnmount() {
+    console.log('Closing socket connection');
     this.socket.disconnect();
   }
   /////////////////////
